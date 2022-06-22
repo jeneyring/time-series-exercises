@@ -74,9 +74,8 @@ def get_store_item_demand_data():
     items = get_items_data()
 
     sales = sales.rename(columns={'store': 'store_id', 'item': 'item_id'})
-    df = pd.merge(sales, stores, how='left', on='store_id')
-    df = pd.merge(df, items, how='left', on='item_id')
-
+    df = pd.merge(sales, stores, how='inner', left_on='store_id', right_on='store_id')
+    df = pd.merge(df, items, how='inner', left_on='item_id', right_on='item_id')
     return df
 
 def get_opsd_data():
