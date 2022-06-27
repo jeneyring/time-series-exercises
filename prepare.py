@@ -25,7 +25,11 @@ def add_columns(df):
 
     return df
 
-    
+#combining all the above:
+def prep_storeitems():
+    df = date_time_index(df)
+    df = add_columns(df)
+    return df
 
 ########## OPS DATASET ########################
 """Function to create date/time format and Date as index"""
@@ -48,5 +52,12 @@ def add_ops_columns(df):
 """Function to fillna with 0 for nulls"""
 
 def fill_nulls(df):
-    df.fillna(0)
+    df = df.fillna(0)
+    return df
+
+#combining all of the above:
+def prep_ops():
+    df = ops_datetime_index(df)
+    df = add_ops_columns(df)
+    df = fill_nulls(df)
     return df
