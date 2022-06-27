@@ -15,4 +15,38 @@ def date_time_index(df):
 
     #Reset sale_date to be index:
     df = df.set_index("sale_date").sort_index()
+    return df
 
+"""Function to add month/day of week and sales_total columns"""
+def add_columns(df):
+    df['month']= df.index.strftime('%m-%b')
+    df['day_of_week']= df.index.strftime('%A')
+    df['sales_total']= df.sale_amount + df.item_price
+
+    return df
+
+    
+
+########## OPS DATASET ########################
+"""Function to create date/time format and Date as index"""
+def ops_datetime_index(df):
+    df.Date=pd.to_datetime(df.Date)
+    #set as index
+    df = df.set_index("Date").sort_index()
+    return df
+
+"""Function to add month/year columns"""
+
+def add_ops_columns(df):
+    #adding month column
+    df['month']= df.index.strftime('%m-%b')
+
+    #adding year column
+    df['year']=df.index.strftime('%Y')
+    return df
+
+"""Function to fillna with 0 for nulls"""
+
+def fill_nulls(df):
+    df.fillna(0)
+    return df
