@@ -21,12 +21,12 @@ def date_time_index(df):
 def add_columns(df):
     df['month']= df.index.strftime('%m-%b')
     df['day_of_week']= df.index.strftime('%A')
-    df['sales_total']= df.sale_amount + df.item_price
+    df['sales_total']= df.sale_amount * df.item_price
 
     return df
 
 #combining all the above:
-def prep_storeitems():
+def prep_storeitems(df):
     df = date_time_index(df)
     df = add_columns(df)
     return df
@@ -56,7 +56,7 @@ def fill_nulls(df):
     return df
 
 #combining all of the above:
-def prep_ops():
+def prep_ops(df):
     df = ops_datetime_index(df)
     df = add_ops_columns(df)
     df = fill_nulls(df)
